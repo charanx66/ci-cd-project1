@@ -13,16 +13,19 @@ function App() {
   const [user, setUser] = useState(null);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/signin" element={<Signin setUser={setUser} />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/appointment" element={<Appointment user={user} />} />
-        <Route path="/dashboard" element={<Dashboard user={user} />} />
-        <Route path="/profile" element={<PatientProfile user={user} />} />
-      </Routes>
-    </BrowserRouter>
+   <BrowserRouter basename="/ci-cd-project1">
+  <Routes>
+    <Route path="/" element={<HomePage />} />
+    <Route path="/signin" element={<Signin setUser={setUser} />} />
+    <Route path="/register" element={<Register />} />
+    <Route path="/appointment" element={<Appointment user={user} />} />
+    <Route path="/dashboard" element={<Dashboard user={user} />} />
+    <Route path="/profile" element={<PatientProfile user={user} />} />
+    <Route path="*" element={<HomePage />} /> {/* fallback */}
+  </Routes>
+</BrowserRouter>
+
+
   );
 }
 
