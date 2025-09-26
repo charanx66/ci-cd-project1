@@ -1,48 +1,29 @@
-import { useState } from 'react'
-import './App.css'
-import Login from './components/Login';
-import Signup from './components/Signup';
+import React, { useState } from 'react';
+import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Signin from './components/Signin';
+import Register from './components/Register';
 import HomePage from './components/HomePage';
-import AboutUs from './components/Aboutus';
-import Computers from './components/Computers';
-import Mobiles from './components/Mobiles';
-import Laptops from './components/Laptops';
-import Pendrives from './components/Pendrives';
-import Home from './components/Home'
-import ProductPage from './components/ProductPage'
-import Cart from './components/Cart';
-import Payment from './components/Payment';
-import Orders from './components/Orders';
-
-
+import Appointment from './components/Appointment';
+import Dashboard from './components/Dashboard';
+import PatientProfile from './components/PatientProfile';
 
 function App() {
-  const [count, setCount] = useState(0)
-  
+  const [user, setUser] = useState(null);
+
   return (
-    <>
-    <BrowserRouter basename="/ecommerce">
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route index element={<AboutUs />} />
-          <Route path="home" element={<Home />} />
-          <Route path="about-us" element={<AboutUs />} />
-          <Route path="computers" element={<Computers />} />
-          <Route path="mobiles" element={<Mobiles />} />
-          <Route path="laptops" element={<Laptops />} />
-          <Route path="pendrives" element={<Pendrives />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="productpage" element={<ProductPage />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="payment" element={<Payment />} />
-          <Route path="orders" element={<Orders />} />
-        </Route>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/signin" element={<Signin setUser={setUser} />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/appointment" element={<Appointment user={user} />} />
+        <Route path="/dashboard" element={<Dashboard user={user} />} />
+        <Route path="/profile" element={<PatientProfile user={user} />} />
       </Routes>
     </BrowserRouter>
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

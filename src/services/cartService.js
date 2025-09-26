@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// Use the correct base URL for cart operations
-const CART_API_URL = "http://localhost:8083/back1/api/cart";
+// Use the correct base URL for schedule operations
+const CART_API_URL = "http://localhost:8083/back1/api/schedule";
 
 export const addToCart = async (userId, productId) => {
   return await axios.post(`${CART_API_URL}/add`, {
@@ -12,7 +12,7 @@ export const addToCart = async (userId, productId) => {
 };
 
 export const getCartItems = async (userId) => {
-  const response = await axios.get(`${CART_API_URL}/user/${userId}`);
+  const response = await axios.get(`${CART_API_URL}/patient/${userId}`);
   return response.data;
 };
 
@@ -24,6 +24,6 @@ export const removeCartItem = async (cartItemId) => {
   try {
     await axios.delete(`${CART_API_URL}/remove/${cartItemId}`);
   } catch (error) {
-    console.error("Error removing item from cart", error);
+    console.error("Error removing item from schedule", error);
   }
 };

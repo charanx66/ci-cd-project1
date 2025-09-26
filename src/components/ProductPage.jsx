@@ -20,34 +20,34 @@ const ProductPage = ({ category }) => {
     fetchProducts();
   }, [category]);
 
-  const handleAddToCart = async (product) => {
+  const handleAddToCart = async (service) => {
     try {
-      await addToCart(product.id);
-      alert("Product added to cart successfully!");
+      await addToCart(service.id);
+      alert("Service added to schedule successfully!");
     } catch (error) {
-      console.error("Error adding to cart:", error);
+      console.error("Error adding to schedule:", error);
     }
   };
 
   return (
-    <div className="product-container">
+    <div className="service-container">
       <h2>
         {category
           ? category.charAt(0).toUpperCase() + category.slice(1)
           : "All Products"}
       </h2>
-      <div className="product-grid">
+      <div className="service-grid">
         {products.length > 0 ? (
-          products.map((product) => (
-            <div key={product.id} className="product-card">
+          products.map((service) => (
+            <div key={service.id} className="service-card">
               <img
-                src={`${BASE_URL}/api/products/images/${product.imagePath}`}
-                alt={product.name}
+                src={`${BASE_URL}/api/products/images/${service.imagePath}`}
+                alt={service.name}
               />
-              <h3>{product.name}</h3>
-              <p>Price: ${product.price}</p>
-              <button onClick={() => handleAddToCart(product)}>
-                Add to Cart
+              <h3>{service.name}</h3>
+              <p>Price: ${service.price}</p>
+              <button onClick={() => handleAddToCart(service)}>
+                Add to Schedule
               </button>
             </div>
           ))

@@ -1,94 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { logout } from "../services/authService";
-import { FaUserCircle } from "react-icons/fa";
-import "./style.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const HomePage = () => {
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setIsAuthenticated(!!localStorage.getItem("token"));
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
-
-  const handleLogout = () => {
-    logout();
-    setIsAuthenticated(false);
-    setDropdownOpen(false);
-    navigate("/login");
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen((prev) => !prev);
-  };
-
+export default function HomePage() {
   return (
     <div className="container">
-      {/* Header */}
-      <div className="header">
-        <h1>E-Commerce</h1>
-        <div className="header-right">
-          {isAuthenticated ? (
-            <div className="profile-menu">
-              <FaUserCircle
-                className="profile-icon"
-                size={28}
-                onClick={toggleDropdown}
-              />
-              {dropdownOpen && (
-                <div className="dropdown">
-                  <Link to="/cart" onClick={() => setDropdownOpen(false)}>Cart</Link>
-                  <Link to="/orders" onClick={() => setDropdownOpen(false)}>Orders</Link>
-                  <button onClick={handleLogout}>Logout</button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <>
-              <Link to="/login"><button>Loginnnnnnnnnnnn</button></Link>
-              <Link to="/signup"><button>Sign Up</button></Link>
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Sidebar */}
-      <div className="sidebar">
-        <ul>
-          <li>
-            <Link to="/about-us">About Us</Link>
-          </li>
-          <li>
-            <Link to="/computers">Computers</Link>
-          </li>
-          <li>
-            <Link to={isAuthenticated ? "/mobiles" : "/login"}>Mobiles</Link>
-          </li>
-          <li>
-            <Link to={isAuthenticated ? "/laptops" : "/login"}>Laptops</Link>
-          </li>
-          <li>
-            <Link to={isAuthenticated ? "/pendrives" : "/login"}>Pendrives</Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* Main Content */}
-      <div className="main">
-        <Outlet />
-      </div>
-
-      {/* Footer */}
-      <div className="footer">@ copyright E-Commerce</div>
+      <header className="header">
+        <h1 style={{fontSize: '2.3em', color: '#4f8cff', margin: 0, letterSpacing: '1px'}}>Healthcare Appointment System</h1>
+        <nav>
+          <Link to="/signin">Sign In</Link>
+          <Link to="/register">Register</Link>
+        </nav>
+      </header>
+      <section style={{display:'flex', flexDirection:'column', alignItems:'center', marginTop: 32, marginBottom: 32}}>
+        <img src="vite.svg" alt="Healthcare" style={{width: 120, marginBottom: 18, filter:'drop-shadow(0 2px 8px #4f8cff33)'}} />
+        <h2 style={{color:'#222', fontWeight:600, marginBottom:8}}>Book Appointments Easily</h2>
+        <p style={{color:'#555', fontSize:'1.1em', maxWidth:500, textAlign:'center', marginBottom:24}}>
+          Book appointments with doctors, manage your health records, and join virtual consultations. Fast, secure, and user-friendly.
+        </p>
+        <Link to="/appointment"><button style={{fontSize:'1.1em', padding:'12px 32px'}}>Book Appointment</button></Link>
+      </section>
     </div>
   );
-};
-
-export default HomePage;
+}

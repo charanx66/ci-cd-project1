@@ -11,9 +11,9 @@ const Payment = () => {
   const navigate = useNavigate();
 
   const handlePayment = () => {
-    completePayment(); // Clear cart and save payment history
+    completePayment(); // Clear schedule and save payment history
     alert("Payment Successful!");
-    navigate("/orders"); // Navigate to payment history page
+    navigate("/appointments"); // Navigate to payment history page
   };
 
   return (

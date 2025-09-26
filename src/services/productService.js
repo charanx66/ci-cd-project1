@@ -13,7 +13,7 @@ export const getProducts = async (category = "") => {
   }
 };
 
-// Get product image URL
+// Get service image URL
 export const getProductImageUrl = (imagePath) => {
   return `${API_BASE_URL}/images/${imagePath}`;
 };

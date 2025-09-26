@@ -5,7 +5,7 @@ import "./style.css";
 
 const BASE_URL = 'http://localhost:9090/back1';
 
-const Cart = () => {
+const Schedule = () => {
   const { cartItems, removeFromCart } = useCart();
   const navigate = useNavigate();
 
@@ -14,14 +14,14 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart-container">
-      <h2>Shopping Cart</h2>
+    <div className="schedule-container">
+      <h2>Shopping Schedule</h2>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty</p>
+        <p>Your schedule is empty</p>
       ) : (
         <>
           {cartItems.map((item) => (
-            <div key={item.id} className="cart-item">
+            <div key={item.id} className="schedule-item">
               <img
                 src={`${BASE_URL}/api/products/images/${item.imagePath}`}
                 alt={item.name}
@@ -38,4 +38,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Schedule;

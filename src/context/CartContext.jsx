@@ -1,18 +1,18 @@
 import React, { createContext, useState, useContext } from "react";
 
-// Create Cart Context
+// Create Schedule Context
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [paymentHistory, setPaymentHistory] = useState([]);
 
-  // Function to add item to cart
-  const addToCart = (product) => {
-    setCartItems((prevCart) => [...prevCart, product]);
+  // Function to add item to schedule
+  const addToCart = (service) => {
+    setCartItems((prevCart) => [...prevCart, service]);
   };
 
-  // Function to remove item from cart
+  // Function to remove item from schedule
   const removeFromCart = (productId) => {
     setCartItems((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
@@ -24,7 +24,7 @@ export const CartProvider = ({ children }) => {
         ...prevHistory,
         { id: Date.now(), items: cartItems, date: new Date().toLocaleString() },
       ]);
-      setCartItems([]); // Empty the cart
+      setCartItems([]); // Empty the schedule
     }
   };
 
@@ -35,7 +35,7 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use cart context
+// Custom hook to use schedule context
 export const useCart = () => {
   return useContext(CartContext);
 };

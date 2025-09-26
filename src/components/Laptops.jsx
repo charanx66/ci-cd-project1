@@ -19,25 +19,25 @@ const Laptops = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    navigate("/cart"); // Redirect to cart page after adding product
+  const handleAddToCart = (service) => {
+    addToCart(service);
+    navigate("/schedule"); // Redirect to schedule page after adding service
   };
 
   return (
-    <div className="product-container">
+    <div className="service-container">
       <h2>Laptops</h2>
-      <div className="product-grid">
+      <div className="service-grid">
         {products.length > 0 ? (
-          products.map((product) => (
-            <div key={product.id} className="product-card">
+          products.map((service) => (
+            <div key={service.id} className="service-card">
               <img
-                src={`${BASE_URL}/api/products/images/${product.imagePath}`}
-                alt={product.name}
+                src={`${BASE_URL}/api/products/images/${service.imagePath}`}
+                alt={service.name}
               />
-              <h4>{product.name}</h4>
-              <p>${product.price.toFixed(2)}</p>
-              <button onClick={() => handleAddToCart(product)}>Add to Cart</button>
+              <h4>{service.name}</h4>
+              <p>${service.price.toFixed(2)}</p>
+              <button onClick={() => handleAddToCart(service)}>Add to Schedule</button>
             </div>
           ))
         ) : (

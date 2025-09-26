@@ -19,33 +19,33 @@ const Computers = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (product) => {
+  const handleAddToCart = (service) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please login to add items to the cart!");
-      navigate("/login");
+      alert("Please signin to add items to the schedule!");
+      navigate("/signin");
       return;
     }
 
-    addToCart(product);
-    navigate("/cart"); // Redirect to cart page after adding product
+    addToCart(service);
+    navigate("/schedule"); // Redirect to schedule page after adding service
   };
 
   return (
-    <div className="product-container">
+    <div className="service-container">
       <h2>Computers</h2>
-      <div className="product-grid">
+      <div className="service-grid">
         {products.length > 0 ? (
-          products.map((product) => (
-            <div key={product.id} className="product-card">
+          products.map((service) => (
+            <div key={service.id} className="service-card">
               <img
-                src={`${BASE_URL}/api/products/images/${product.imagePath}`}
-                alt={product.name}
+                src={`${BASE_URL}/api/products/images/${service.imagePath}`}
+                alt={service.name}
               />
-              <h4>{product.name}</h4>
-              <p>${product.price.toFixed(2)}</p>
-              <button onClick={() => handleAddToCart(product)}>
-                Add to Cart
+              <h4>{service.name}</h4>
+              <p>${service.price.toFixed(2)}</p>
+              <button onClick={() => handleAddToCart(service)}>
+                Add to Schedule
               </button>
             </div>
           ))
